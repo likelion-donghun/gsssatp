@@ -1,0 +1,2 @@
+module RicetudiesHelper
+end

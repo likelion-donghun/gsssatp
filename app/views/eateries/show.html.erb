@@ -1,0 +1,22 @@
+
+
+restaurant : <%= @eatery.name %><br>
+openhour : <%= @eatery.openhour %><br>
+callnumber : <%= @eatery.callnumber %><br>
+style  : <%= @eatery.style %>
+<image_tag></image_tag><br>
+
+<%=link_to 'list', eateries_path, class: 'waves-effect waves-light btn'%>
+<%=link_to 'edit', edit_eatery_path(@eatery), class: 'waves-effect waves-light btn'%>
+<%=link_to 'delete', eatery_path(@eatery), method: "delete", class: 'waves-effect waves-light btn'%><br>
+
+
+<!--menu, review(comment), favorite, like-->
+comment<br>
+<% @eatery.comments.each do |c| %>
+ <%= c.content %><br>
+<%=link_to 'edit', edit_comment_path(c), class: 'waves-effect waves-light btn'%>
+<%=link_to 'delete', comment_path(c), method: "delete", class: 'waves-effect waves-light btn'%><br> 
+<% end %>
+  
+  <%= render partial: 'comments/new', locals: { :comment => @eatery.comments.new , eatery: @eatery.id, belong: "eatery"} %>
