@@ -8,5 +8,8 @@ class Comment < ActiveRecord::Base
     #Promotion:Comment => 1:N
     belongs_to :promotion
     
-    has_many :users
+    #Ricetudy:Comment => 1:N
+    belongs_to :ricetudy
+    
+    belongs_to :user
 end

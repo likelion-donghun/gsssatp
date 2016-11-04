@@ -1,0 +1,31 @@
+<div class="row">
+
+       <div class="col s12 m5">
+
+          <div class="card">
+            <div class="card-image">
+
+              <!--<img src="#{<%#=r.image%>}">-->
+                <%@ricetudies.each do |r|%>
+              <span class="card-title"><%=r.title%></span>
+            </div>
+            <div class="card-content">
+              <p><%=r.content%></p>
+            </div>
+            <div class="card-action">
+              <% unless r.user.nil? %>
+              user: <%=r.user.email%><br>
+              <%end%>
+              eatery: <%=r.eatery%><br>
+              start: <%=r.start%><br>
+              end: <%=r.end_at%><br>
+              contact: <%=r.contact%><br>
+              
+          <%=link_to "show", ricetudy_path(r), class: 'waves-effect waves-light btn'%><br><br>
+      <%end%>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <%= will_paginate @ricetudies %>

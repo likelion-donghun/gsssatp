@@ -4,6 +4,7 @@ class CreatePromotions < ActiveRecord::Migration
       t.string :name
       t.string :content
       t.string :image
+      t.references :user, index: true, foreign_key: true
       
     
       t.timestamps null: false

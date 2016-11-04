@@ -1,0 +1,16 @@
+<%=@ricetudy.title%><br>
+<%=@ricetudy.eatery%><br>
+<%=@ricetudy.start%><br>
+<%=@ricetudy.end_at%><br>
+<%=@ricetudy.content%><br>
+<%=@ricetudy.image%><br>
+<%=@ricetudy.contact%>
+
+comment<br>
+<% @ricetudy.comments.each do |r| %>
+<%= r.content %><br>
+<%=link_to 'edit', edit_comment_path(c), class: 'waves-effect waves-light btn'%>
+<%=link_to 'delete', comment_path(c), method: "delete", class: 'waves-effect waves-light btn'%><br> 
+<% end %>
+  
+  <%= render partial: 'comments/new', locals: { :comment => @ricetudy.comments.new , eatery: @ricetudy.id, belong: "ricetudy"} %>

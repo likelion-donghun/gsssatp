@@ -2,6 +2,12 @@
   <%#= current_user.name %>
 
   <%= f.text_field :content %>
+  
+  <div class="field">
+<%=f.label :image  %>
+<%=f.file_field :image%>
+</div> 
+   
    <% if belong=="eatery" %>
     <%= f.hidden_field :eatery_id, value: eatery %>
   <% end %>

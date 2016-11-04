@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :ricetudies
   resources :comments
   get 'home/index'
-
+  root to: 'home#index'
+  
   resources :eateries
   resources :promotions
   # The priority is based upon order of creation: first created -> highest priority.

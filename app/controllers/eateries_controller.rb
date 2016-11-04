@@ -1,6 +1,6 @@
 class EateriesController < ApplicationController
     def index
-        @eateries = Eatery.all
+        @eateries = Eatery.paginate(:page => params[:page], :per_page => 10)
     end
 
     def new
@@ -9,6 +9,7 @@ class EateriesController < ApplicationController
 
     def create
         @eatery = Eatery.new(eatery_params)
+        @eatery.user=current_user
         @eatery.save
     
         redirect_to eatery_path(@eatery)

@@ -1,6 +1,6 @@
 class PromotionsController < ApplicationController
     def index
-        @promotions = Promotion.all
+        @promotions = Promotion.paginate(:page => params[:page], :per_page => 10)
     end
 
     def new
@@ -9,6 +9,7 @@ class PromotionsController < ApplicationController
 
     def create
         @promotion = Promotion.new(promotion_params)
+        @promotion.user=current_user
         @promotion.save
         redirect_to promotion_path(@promotion)
     end
