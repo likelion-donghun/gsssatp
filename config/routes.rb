@@ -5,8 +5,14 @@ Rails.application.routes.draw do
   get 'home/index'
   root to: 'home#index'
   
-  resources :eateries
-  resources :promotions
+  resources :eateries do
+    post "/like", to: "likes#like_toggle"
+  end
+  
+  resources :promotions do
+    post "/like", to: "likes#like_toggle2"
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

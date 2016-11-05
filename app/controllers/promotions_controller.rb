@@ -30,7 +30,9 @@ class PromotionsController < ApplicationController
     end
 
     def destroy
-    
+        @promotion = Promotion.find(params[:id])
+        @promotion.destroy
+        redirect_to promotion_path
     end
     
     private

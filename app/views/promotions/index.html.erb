@@ -1,3 +1,5 @@
+<%=link_to "new", new_promotion_path ,class: 'waves-effect waves-light btn'%>
+
   <div class="row">
         <div class="col s12 m5">
           <div class="card">
@@ -7,6 +9,12 @@
               <span class="card-title"><%=p.name%></span>
             </div>
             <div class="card-content">
+              <%= p.likes.size %>"명이 좋아합니다.
+              <% if current_user.is_like2(p)%>
+              <%= link_to "cancel", promotion_like_path(p), method: "post"%>
+              <%else%>
+              <%= link_to "like", promotion_like_path(p), method: "post"%>
+              <%end%>
               <p><%=p.content%><br></p>
             </div>
             <div class="card-action">

@@ -1,4 +1,4 @@
-
+<%=link_to "new", new_eatery_path ,class: 'waves-effect waves-light btn'%>
 
   <div class="row">
         <div class="col s12 m5">
@@ -9,6 +9,12 @@
               <span class="card-title"><%=e.name%></span>
             </div>
             <div class="card-content">
+              <%= e.likes.size %> 명이 좋아합니다.
+        <% if current_user.is_like(e) %>
+          <%= link_to "좋아요 취소", eatery_like_path(e), method: "post" %>
+        <% else %>
+          <%= link_to "좋아요", eatery_like_path(e), method: "post" %>
+        <% end %>
               <p>I am a very simple card. I am good at containing small bits of information.
               I am convenient because I require little markup to use effectively.</p>
             </div>
