@@ -1,32 +1,38 @@
-<%=link_to "new", new_promotion_path ,class: 'waves-effect waves-light btn'%>
+<%=link_to "new", new_promotion_path ,class: 'waves-effect waves-light btn'%><br>
 
-  <div class="row">
-        <div class="col s12 m5">
+  <!--<div class="row">-->
+    <% @promotions.each do |p| %>
+        <div class="col s12 m4">
           <div class="card">
             <div class="card-image">
               <img src="images/sample-1.jpg">
-    <% @promotions.each do |p| %>
               <span class="card-title"><%=p.name%></span>
             </div>
             <div class="card-content">
-              <%= p.likes.size %>"명이 좋아합니다.
-              <% if current_user.is_like2(p)%>
-              <%= link_to "cancel", promotion_like_path(p), method: "post"%>
-              <%else%>
-              <%= link_to "like", promotion_like_path(p), method: "post"%>
+               <%= p.likes.size %>명이 좋아합니다.
+              <% if user_signed_in? %>
+                <% if current_user.is_like2(p)%>
+                  <%= link_to promotion_like_path(p), method: "post" do%>
+                  <%= image_tag "#{asset_path "heart.png"}", alt: "blog-img"%>
+                  <%end%>
+                <%else%>
+                  <%= link_to promotion_like_path(p), method: "post" do%>
+                  <%= image_tag "#{asset_path "heart_empty.png"}", alt: "blog-img"%>
+                  <%end%>
+                <%end%>
               <%end%>
               <p><%=p.content%><br></p>
-            </div>
+            <!--</div>-->
             <div class="card-action">
               <% unless p.user.nil? %>
               user: <%=p.user.email%><br>
               <%end%>
 
-          <%=link_to "show", promotion_path(p), class: 'waves-effect waves-light btn'%><br><br>
-      <%end%>
+          <%=link_to "show", promotion_path(p), class: 'waves-effect waves-light btn'%>
+      
             </div>
           </div>
         </div>
       </div>
-      
+    <%end%>
             <%= will_paginate @promotions %>

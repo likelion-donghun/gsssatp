@@ -24,18 +24,23 @@
 
 <body>
  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Soongsi3kki</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">숭시세끼</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Eatery</a></li>
-        <li><a href="#">Promotion</a></li>
-        <li><a href="#">Ricetudy</a></li>
-        <li><a href="#">Login</a></li>
+        <li><%= link_to 'Eatery', eateries_path%></li>
+        <li><%= link_to 'Promotion', promotions_path%></li>
+        <li><%= link_to 'Ricetudy', ricetudies_path%></li>
+        <% if user_signed_in? %>
+        <li><a href=#>MyPage</a></li>
+        <li><a href='/users/sign_in'>Logout</a></li>
+        <%else%>
+        <li><a href='/users/sign_in'>Login</a></li>
+        <%end%>
       </ul>
 <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Eatery</a></li>
-        <li><a href="#">Promotion</a></li>
-        <li><a href="#">Ricetudy</a></li>
-        <li><a href="#">Login</a></li>
+        <li><%= link_to 'Eatery', eateries_path%></li>
+        <li><%= link_to 'Promotion', promotions_path%></li>
+        <li><%= link_to 'Ricetudy', ricetudies_path%></li>
+        <li><a href='/users/sign_in'>Login</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -43,9 +48,10 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Soongsi3kki</h1>
+      <h1 class="header center orange-text">숭시세끼</h1>
       <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+        <h5 class="header col s12 light">Restaurants Information Platform for Soongsil Students</h5>
+        
       </div>
       <div class="row center">
         <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
@@ -69,7 +75,7 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
+          <h5 class="white-text">숭시세끼</h5>
           <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
 
 

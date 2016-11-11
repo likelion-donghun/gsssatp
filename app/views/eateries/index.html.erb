@@ -1,20 +1,24 @@
-<%=link_to "new", new_eatery_path ,class: 'waves-effect waves-light btn'%>
-
-  <div class="row">
-        <div class="col s12 m5">
-          <div class="card">
+<%=link_to "new", new_eatery_path ,class: 'waves-effect waves-light btn'%><br>
+  <% @eateries.each do |e| %>
+      <div class="col s12 m4">
+        <div class="card">
             <div class="card-image">
               <img src="images/sample-1.jpg">
-    <% @eateries.each do |e| %>
               <span class="card-title"><%=e.name%></span>
             </div>
             <div class="card-content">
               <%= e.likes.size %> 명이 좋아합니다.
-        <% if current_user.is_like(e) %>
-          <%= link_to "좋아요 취소", eatery_like_path(e), method: "post" %>
-        <% else %>
-          <%= link_to "좋아요", eatery_like_path(e), method: "post" %>
-        <% end %>
+              <% if user_signed_in? %>
+                <% if current_user.is_like(e) %>
+                  <%= link_to eatery_like_path(e), method: "post" do%>
+                    <%= image_tag "#{asset_path "heart.png"}", alt: "blog-img"%>
+                  <% end %>
+                <% else %>
+                  <%= link_to eatery_like_path(e), method: "post" do%>
+                    <%= image_tag "#{asset_path "heart_empty.png"}", alt: "blog-img"%>
+                  <% end %>
+                <% end %>
+              <% end %>  
               <p>I am a very simple card. I am good at containing small bits of information.
               I am convenient because I require little markup to use effectively.</p>
             </div>
@@ -24,12 +28,11 @@
               <%end%>
               contact: <%=e.callnumber%><br>
               openhour: <%=e.openhour%><br>
-          <%=link_to "show", eatery_path(e), class: 'waves-effect waves-light btn'%><br><br>
-      <%end%>
+              <%=link_to "show", eatery_path(e), class: 'waves-effect waves-light btn'%>
             </div>
           </div>
         </div>
-      </div>
       
+  <%end%>      
             <%= will_paginate @eateries %>
       
