@@ -7,16 +7,26 @@ style  : <%= @eatery.style %>
 <image_tag></image_tag><br>
 
 <%=link_to 'list', eateries_path, class: 'waves-effect waves-light btn'%>
-<%=link_to 'edit', edit_eatery_path(@eatery), class: 'waves-effect waves-light btn'%>
-<%=link_to 'delete', eatery_path(@eatery), method: "delete", class: 'waves-effect waves-light btn'%><br>
+<% if user_signed_in? %>
+  <% if @eatery.updatable_by? current_user %>
+    <%=link_to 'edit', edit_eatery_path(@eatery), class: 'waves-effect waves-light btn'%>
+  <%end%>
+  <% if @eatery.deletable_by? current_user %>
+    <%=link_to 'delete', eatery_path(@eatery), method: "delete", class: 'waves-effect waves-light btn'%><br>
+  <%end%>
 
 
 <!--menu, review(comment), favorite, like-->
 comment<br>
 <% @eatery.comments.each do |c| %>
- <%= c.content %><br>
-<%=link_to 'edit', edit_comment_path(c), class: 'waves-effect waves-light btn'%>
-<%=link_to 'delete', comment_path(c), method: "delete", class: 'waves-effect waves-light btn'%><br> 
-<% end %>
-  
+  <%= c.content %><br>
+
+    <% if c.updatable_by? current_user %> 
+      <%=link_to 'edit', edit_comment_path(c), class: 'waves-effect waves-light btn'%>
+    <%end%>
+    <% if c.deletable_by? current_user %>
+      <%=link_to 'delete', comment_path(c), method: "delete", class: 'waves-effect waves-light btn'%><br> 
+    <%end%>
+  <% end %>
+<%end%>  
   <%= render partial: 'comments/new', locals: { :comment => @eatery.comments.new , eatery: @eatery.id, belong: "eatery"} %>

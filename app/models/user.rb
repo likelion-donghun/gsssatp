@@ -4,14 +4,19 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
+  rolify
+  include Authority::UserAbilities
+  
+  
   has_many :comments
 
   has_many :ricetudies
 
   # User : Promotion => 1:N
   has_many :promotions
+  
   # User : Promotion => M:N
-  has_many :liked_promotions, through: :likes, source: :user
+  has_many :liked_promotions, through: :likes, source: :promotions
     
   # User : Eatery => 1:N
   has_many :eateries

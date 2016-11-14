@@ -6,6 +6,7 @@ class CreateEateries < ActiveRecord::Migration
       t.string :style
       t.string :openhour
       t.string :image
+      t.string :menu
       t.references :user, index: true, foreign_key: true
       
       

@@ -23,6 +23,7 @@
 </head>
 
 <body>
+
  <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">숭시세끼</a>
       <ul class="right hide-on-med-and-down">
@@ -54,7 +55,13 @@
         
       </div>
       <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+        <%= form_tag eateries_path, :method => :get do %>
+          <p>
+            <%= text_field_tag :search, params[:search], placeholder: 'ex) McDonald' %>
+          </p>
+          <%= submit_tag "Search", :name => nil, class:"btn-large waves-effect waves-light orange" %>
+                <% end %>
+        <!--<a href="http://materializecss.com/getting-started.html" id="download-button" >Get Started</a>-->
       </div>
       <br><br>
 
@@ -67,6 +74,7 @@
       <!--   Icon Section   -->
       <div class="row">
   <%= yield %>
+
      </div>
   </div>
   </div>

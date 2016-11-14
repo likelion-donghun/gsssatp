@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20161105062345) do
     t.string   "style"
     t.string   "openhour"
     t.string   "image"
+    t.string   "menu"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20161105062345) do
     t.string   "name"
     t.string   "content"
     t.string   "image"
+    t.integer  "eatery_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

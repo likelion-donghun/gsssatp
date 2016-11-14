@@ -16,10 +16,12 @@ class PromotionsController < ApplicationController
     
     def edit
         @promotion = Promotion.find(params[:id])
+        authorize_action_for @promotion
     end
 
     def update
         @promotion = Promotion.find(params[:id])
+        authorize_action_for @promotion
         @promotion.update(promotion_params)
         redirect_to promotion_path(@promotion)
     end
@@ -31,6 +33,7 @@ class PromotionsController < ApplicationController
 
     def destroy
         @promotion = Promotion.find(params[:id])
+        authorize_action_for @promotion
         @promotion.destroy
         redirect_to promotion_path
     end

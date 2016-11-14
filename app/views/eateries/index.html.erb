@@ -4,9 +4,10 @@
         <div class="card">
             <div class="card-image">
               <img src="images/sample-1.jpg">
-              <span class="card-title"><%=e.name%></span>
+          
             </div>
             <div class="card-content">
+            <span class="card-title"><%=e.name%></span>
               <%= e.likes.size %> 명이 좋아합니다.
               <% if user_signed_in? %>
                 <% if current_user.is_like(e) %>
@@ -32,7 +33,6 @@
             </div>
           </div>
         </div>
-      
   <%end%>      
             <%= will_paginate @eateries %>
       

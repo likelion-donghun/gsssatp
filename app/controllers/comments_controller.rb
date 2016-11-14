@@ -16,17 +16,20 @@ class CommentsController < ApplicationController
     
     def edit
         @comment = Comment.find(params[:id])
+        authorize_action_for @comment
     end
     
     def update
         @comment = Comment.find(params[:id])
         @eatery = @comment.eatery_id
+        authorize_action_for @comment
         @comment.update(comment_params)
         redirect_to eatery_path(@eatery)
     end
     
     def destroy
         @comment = Comment.find(params[:id])
+        authorize_action_for @comment
         @comment.destroy
     end
     

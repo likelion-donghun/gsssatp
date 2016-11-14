@@ -21,16 +21,19 @@ class RicetudiesController < ApplicationController
     
     def edit
         @ricetudy = Ricetudy.find(params[:id])
+        authorize_action_for @ricetudy
     end
     
     def update
         @ricetudy = Ricetudy.find(params[:id])
+        authorize_action_for @ricetudy
         @ricetudy.update(ricetudy_params)
         redirect_to ricetudy_path(@ricetudy)
     end
     
     def destroy
         @ricetudy = Ricetudy.find(params[:id])
+        authorize_action_for @ricetudy
         @ricetudy.destroy
         redirect_to ricetudies_path
     end

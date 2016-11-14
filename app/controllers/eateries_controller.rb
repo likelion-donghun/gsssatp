@@ -1,6 +1,15 @@
 class EateriesController < ApplicationController
     def index
+        @search = Eatery.search do
+        fulltext params[:search]
+        end
+        
+    if @search.present?
+        @eateries = @search.results
+    else
         @eateries = Eatery.paginate(:page => params[:page], :per_page => 10)
+    end
+    
     end
 
     def new
@@ -23,16 +32,19 @@ class EateriesController < ApplicationController
 
     def edit
         @eatery = Eatery.find(params[:id])
+        authorize_action_for @eatery
     end
 
     def update
         @eatery = Eatery.find(params[:id])    
+        authorize_action_for @eatery
         @eatery.update(eatery_params)
         redirect_to eatery_path(@eatery)
     end
 
     def destroy
         @eatery = Eatery.find(params[:id])
+        authorize_action_for @eatery
         @eatery.destroy
         
         redirect_to eateries_path
@@ -40,7 +52,7 @@ class EateriesController < ApplicationController
     
     private
     def eatery_params
-        params.require(:eatery).permit(:style, :name, :callnumber, :openhour)    
+        params.require(:eatery).permit(:style, :name, :callnumber, :openhourm, :menu)    
     end
 
 

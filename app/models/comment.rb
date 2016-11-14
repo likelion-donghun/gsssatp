@@ -1,4 +1,7 @@
 class Comment < ActiveRecord::Base
+    resourcify
+  include Authority::Abilities
+    
     #User:Comment => 1:N
     #belongs_to :user, optional: true
     
