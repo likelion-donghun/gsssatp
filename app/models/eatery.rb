@@ -22,7 +22,7 @@ class Eatery < ActiveRecord::Base
         text :style
         text :name#,:publish_month
         text :comments do
-            comments.map(&:content)
+            comments.map(&:eatery)
         end
         #time :published_at
         #string :publish_month

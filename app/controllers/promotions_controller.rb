@@ -10,6 +10,8 @@ class PromotionsController < ApplicationController
     def create
         @promotion = Promotion.new(promotion_params)
         @promotion.user=current_user
+        @eatery = Eatery.where(name: @promotion.restaurant)
+        @promotion.eatery_id = @eatery.ids[0]
         @promotion.save
         redirect_to promotion_path(@promotion)
     end
@@ -40,7 +42,7 @@ class PromotionsController < ApplicationController
     
     private
     def promotion_params
-        params.require(:promotion).permit(:name, :content, :image)
+        params.require(:promotion).permit(:name, :content, :image, :restaurant)
     end
     
 end

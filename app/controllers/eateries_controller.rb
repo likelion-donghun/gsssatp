@@ -4,11 +4,19 @@ class EateriesController < ApplicationController
         fulltext params[:search]
         end
         
-    if @search.present?
-        @eateries = @search.results
-    else
-        @eateries = Eatery.paginate(:page => params[:page], :per_page => 10)
-    end
+        if params[:search].present? 
+            @eateries = @search.results
+        else
+            @eateries = Eatery.paginate(:page => params[:page], :per_page => 28)
+        end
+        #@eateries = @search.results
+        
+        #@eateries = Eatery.paginate(:page => params[:page], :per_page => 30)
+        #if @search.present?
+            #@eateries = @search.results
+        #else
+            #@eateries = Eatery.paginate(:page => params[:page], :per_page => 30)
+        #end
     
     end
 

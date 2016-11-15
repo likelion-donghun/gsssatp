@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20161105062345) do
     t.string   "name"
     t.string   "content"
     t.string   "image"
+    t.string   "restaurant"
     t.integer  "eatery_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false

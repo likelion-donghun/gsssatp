@@ -4,6 +4,7 @@ class CreatePromotions < ActiveRecord::Migration
       t.string :name
       t.string :content
       t.string :image
+      t.string :restaurant
       t.belongs_to :eatery
       t.references :user, index: true, foreign_key: true
       
