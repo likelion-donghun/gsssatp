@@ -1,12 +1,87 @@
-<h1>likes ranking</h1>
-<% @eatery.each do |e|%>
-<%= e.name %>
-<%= e.likes.size %>
-<% end %><br>
-<% @ranking.each do |r| %>
-<%= r.name %>
-<%= r.likes.size %>
-<% end %>
-<h1>this week promotions</h1>
-<h1>today ricetudies</h1>
-<h1>recent reviews</h1>
+        <div class="col s12 m3">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">thumb_up</i></h2>
+            <h5 class="center">Likes</h5>
+                <ol>
+                  <% @ranking.each do |r| %>
+                    <li>
+                      <%= link_to eatery_path(r) do%>
+                        <%= r.name %>
+                      <% end %>
+                        <%= r.likes.size %><br>
+                      <% end %>
+                </li>
+                </ol>
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m3">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">today</i></h2>
+            <h5 class="center">Promotions</h5>
+                <ol>
+                  <% @promotions.each do |p| %>
+                    <li>
+                    <%= link_to promotion_path(p) do%>
+                      |<%= p.restaurant%>|
+                      <%= p.name %><br>
+                    <% end %>
+                    </li>
+                  <% end %>
+                </ol>
+            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m3">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">mode_edit</i></h2>
+            <h5 class="center">Study</h5>
+                <ol>
+                <% @ricetudies.each do |r| %>
+                  <li>
+                  <%= link_to ricetudy_path(r) do%>
+                    <%= r.title %><br>
+                  <% end %>
+                    <%= r.content %><br>
+                  <% end %>
+                  </li>
+                </ol>
+            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+          </div>
+        </div>
+        
+        <div class="col s12 m3">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">comment</i></h2>
+            <h5 class="center">Reviews</h5>
+              <ol>
+              <% @comments.each do |c|%>
+              <% if c.eatery_id.present?%>
+              <li>
+              <%= link_to eatery_path(c.eatery_id) do%>
+              <%= c.content%><br>
+              <%end%>
+              </li>
+              
+              <% elsif c.promotion_id.present?%>
+              <li>
+              <%= link_to promotion_path(c.promotion_id) do%>
+              <%= c.content%><br>
+              <%end%>
+              </li>
+              <% else%>
+              <li>
+              <%= link_to ricetudy_path(c.ricetudy_id) do%>
+              <%= c.content%><br>
+              <%end%>
+              </li>
+              <%end%>
+              <%end%>
+              </ol>
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+          </div>
+        </div>
+
+

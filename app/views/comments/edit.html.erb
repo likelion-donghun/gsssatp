@@ -1,5 +1,5 @@
 <%= form_for @comment do |f| %>
-  <%#= current_user.name %>
+  <%= current_user.name %>
 <%#=render partial: 'form', locals: {:f=>a}%>
 
   <%= f.text_field :content %>

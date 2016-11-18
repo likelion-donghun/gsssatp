@@ -40,12 +40,12 @@ class EateriesController < ApplicationController
 
     def edit
         @eatery = Eatery.find(params[:id])
-        authorize_action_for @eatery
+        #authorize_action_for @eatery
     end
 
     def update
         @eatery = Eatery.find(params[:id])    
-        authorize_action_for @eatery
+        #authorize_action_for @eatery
         @eatery.update(eatery_params)
         redirect_to eatery_path(@eatery)
     end
@@ -60,7 +60,7 @@ class EateriesController < ApplicationController
     
     private
     def eatery_params
-        params.require(:eatery).permit(:style, :name, :callnumber, :openhourm, :menu)    
+        params.require(:eatery).permit(:style, :name, :callnumber, :openhourm, :menu, :image)    
     end
 
 

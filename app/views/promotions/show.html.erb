@@ -1,5 +1,5 @@
-restaurant : <%= @promotion.name %><br>
-content  : <%= @promotion.content %>
+Restaurant : <%= @promotion.name %><br>
+Content  : <%= @promotion.content %>
 <image_tag></image_tag><br>
 
 <%=link_to 'list', promotions_path, class: 'waves-effect waves-light btn'%>
@@ -10,12 +10,12 @@ content  : <%= @promotion.content %>
   <%end%>
   <% if @promotion.deletable_by? current_user %>
     <%=link_to 'delete', promotion_path(@promotion), method: "delete", class: 'waves-effect waves-light btn'%><br>
-  <%end%>
+  <%end%><br><br>
 
 <!--menu, review(comment), favorite, like-->
-comment<br>
+Review<br>
 <% @promotion.comments.each do |c| %>
-  <%= c.content %><br>
+  <%= c.content %> - <%= c.user.email if c.user %><br>
     <% if c.updatable_by? current_user %>
       <%=link_to 'edit', edit_comment_path(c), class: 'waves-effect waves-light btn'%>
     <% end %>
@@ -23,7 +23,7 @@ comment<br>
       <%=link_to 'delete', comment_path(c), method: "delete", class: 'waves-effect waves-light btn'%><br> 
     <% end %>
   <%end%>
-<% end %>  
+<% end %><br>  
   <%= render partial: 'comments/new', locals: { :comment => @promotion.comments.new , promotion: @promotion.id, belong: "promotion"} %>
   
   

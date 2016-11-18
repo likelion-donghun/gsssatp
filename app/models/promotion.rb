@@ -2,7 +2,7 @@ class Promotion < ActiveRecord::Base
      resourcify
   include Authority::Abilities
 
-    
+    mount_uploader :image, AvatarUploader
     #Promotion:Comment => 1:N
     has_many :comments
     #User:Promotion => 1:N

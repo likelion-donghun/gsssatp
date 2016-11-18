@@ -1,7 +1,9 @@
 class Eatery < ActiveRecord::Base
     resourcify
   include Authority::Abilities
+   include ActionView::Helpers::TextHelper
 
+   mount_uploader :image, AvatarUploader
    
     #Eatery:Comment => 1:N
     has_many :comments

@@ -1,7 +1,8 @@
 class Comment < ActiveRecord::Base
     resourcify
   include Authority::Abilities
-    
+    mount_uploader :image, AvatarUploader
+       
     #User:Comment => 1:N
     #belongs_to :user, optional: true
     

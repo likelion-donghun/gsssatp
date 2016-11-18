@@ -1,10 +1,10 @@
-<%=@ricetudy.title%><br>
-<%=@ricetudy.eatery%><br>
-<%=@ricetudy.start%><br>
-<%=@ricetudy.end_at%><br>
-<%=@ricetudy.content%><br>
-<%=@ricetudy.image%><br>
-<%=@ricetudy.contact%>
+Title : <%=@ricetudy.title%><br>
+Place : <%#=@ricetudy.eatery%><br>
+Start : <%=@ricetudy.start%><br>
+End : <%=@ricetudy.end_at%><br>
+Content : <%=@ricetudy.content%><br>
+Image : <%=@ricetudy.image%><br>
+Contact : <%=@ricetudy.contact%><br>
 
 <%=link_to 'list', ricetudies_path, class: 'waves-effect waves-light btn'%>
 <% if user_signed_in? %>
@@ -13,12 +13,12 @@
   <%end%>    
   <% if @ricetudy.deletable_by? current_user %>
     <%=link_to 'delete', ricetudy_path(@ricetudy), method: "delete", class: 'waves-effect waves-light btn'%><br>
-  <%end%>
+  <%end%><br><br>
   
 <!--menu, review(comment), favorite, like-->
-comment<br>
+Review<br>
 <% @ricetudy.comments.each do |c| %>
-  <%= c.content %><br>
+  <%= c.content %> - <%= c.user.email if c.user %><br>
     <% if c.updatable_by? current_user %>
       <%=link_to 'edit', edit_comment_path(c), class: 'waves-effect waves-light btn'%>
     <% end %>
@@ -26,5 +26,5 @@ comment<br>
       <%=link_to 'delete', comment_path(c), method: "delete", class: 'waves-effect waves-light btn'%><br> 
     <% end %>
   <%end%>
-<%end%>
+<%end%><br>
   <%= render partial: 'comments/new', locals: { :comment => @ricetudy.comments.new , eatery: @ricetudy.id, belong: "ricetudy"} %>

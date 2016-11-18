@@ -1,9 +1,11 @@
+        
+
 <%=link_to "new", new_eatery_path ,class: 'waves-effect waves-light btn'%><br>
   <% @eateries.each do |e| %>
       <div class="col s12 m3">
         <div class="card">
             <div class="card-image">
-              <img src="images/sample-1.jpg">
+            <%= image_tag "#{e.image}", :size => '200x150' %>
           
             </div>
             <div class="card-content">
