@@ -1,4 +1,6 @@
 class EateriesController < ApplicationController
+    skip_before_action :authenticate_user!, :only => [:index]
+    
     def index
         @search = Eatery.search do
         fulltext params[:search]
@@ -7,7 +9,7 @@ class EateriesController < ApplicationController
         if params[:search].present? 
             @eateries = @search.results
         else
-            @eateries = Eatery.paginate(:page => params[:page], :per_page => 28)
+            @eateries = Eatery.order("name asc").paginate(:page => params[:page], :per_page => 28)
         end
         #@eateries = @search.results
         
@@ -51,10 +53,9 @@ class EateriesController < ApplicationController
     end
 
     def destroy
+        #authorize_action_for @eatery
         @eatery = Eatery.find(params[:id])
-        authorize_action_for @eatery
         @eatery.destroy
-        
         redirect_to eateries_path
     end
     

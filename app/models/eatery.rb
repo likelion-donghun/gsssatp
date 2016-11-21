@@ -1,7 +1,7 @@
 class Eatery < ActiveRecord::Base
     resourcify
+    
   include Authority::Abilities
-   include ActionView::Helpers::TextHelper
 
    mount_uploader :image, AvatarUploader
    

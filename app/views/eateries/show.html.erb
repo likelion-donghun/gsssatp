@@ -2,15 +2,15 @@ Restaurant : <%= @eatery.name %><br>
 Open Hours : <%= @eatery.openhour %><br>
 Contact : <%= @eatery.callnumber %><br>
 Style  : <%= @eatery.style %><br>
-Menu  : <%= @eatery.menu %>
+Menu  : <%= h(@eatery.menu).gsub(/\n/, '<br/>').html_safe%>
 
-<image_tag></image_tag><br>
+<%=image_tag "#{@eatery.image}", class: "responsive-img"%><br>
 
 <%=link_to 'list', eateries_path, class: 'waves-effect waves-light btn'%>
-<%# if user_signed_in? %>
-  <%# if @eatery.updatable_by? current_user %>
+<% if user_signed_in? %>
+  <% if @eatery.updatable_by? current_user %>
     <%=link_to 'edit', edit_eatery_path(@eatery), class: 'waves-effect waves-light btn'%>
-  <%#end%>
+  <%end%>
   <% if @eatery.deletable_by? current_user %>
     <%=link_to 'delete', eatery_path(@eatery), method: "delete", class: 'waves-effect waves-light btn'%><br>
   <%end%><br><br>
@@ -28,5 +28,5 @@ Review<br>
       <%=link_to 'delete', comment_path(c), method: "delete", class: 'waves-effect waves-light btn'%><br> 
     <%end%>
   <% end %>
-<%#end%>  <br>
+<%end%>  <br>
   <%= render partial: 'comments/new', locals: { :comment => @eatery.comments.new , eatery: @eatery.id, belong: "eatery"} %>

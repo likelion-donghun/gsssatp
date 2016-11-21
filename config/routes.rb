@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  
   resources :ricetudies
   resources :comments
   get 'home/index'

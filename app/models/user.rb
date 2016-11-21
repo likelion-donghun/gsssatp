@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   rolify
+  
   include Authority::UserAbilities
   
   
@@ -19,7 +20,7 @@ class User < ActiveRecord::Base
   has_many :liked_promotions, through: :likes, source: :promotions
     
   # User : Eatery => 1:N
-  has_many :eateries
+  has_many :eateries, :dependent => :destroy
   
   # User : Like => 1:N 
   has_many :likes

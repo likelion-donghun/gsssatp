@@ -6,7 +6,6 @@ CarrierWave.configure do |config|
     region:                'ap-northeast-2',                  # optional, defaults to 'us-east-1'
     endpoint:              'https://s3.ap-northeast-2.amazonaws.com' # optional, defaults to nil
   }
-  config.fog_directory  = 'name_of_directory'                          # required
+  config.fog_directory  = 'dispatch123'                          # required
 
-  
-end
+  end
