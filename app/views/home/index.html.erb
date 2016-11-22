@@ -57,6 +57,7 @@
             <h2 class="center light-blue-text"><i class="material-icons">comment</i></h2>
             <h5 class="center">Reviews</h5>
               <ol>
+
               <% @comments.each do |c|%>
               <% if c.eatery_id.present?%>
               <li>
@@ -64,21 +65,22 @@
               <%= c.content%><br>
               <%end%>
               </li>
-              
               <% elsif c.promotion_id.present?%>
               <li>
               <%= link_to promotion_path(c.promotion_id) do%>
               <%= c.content%><br>
               <%end%>
               </li>
-              <% else%>
+              <%# else%>
               <li>
-              <%= link_to ricetudy_path(c.ricetudy_id) do%>
-              <%= c.content%><br>
-              <%end%>
+              <%#= link_to ricetudy_path(c.ricetudy_id) do%>
+              <%#= c.content%><br>
+              <%#end%>
               </li>
               <%end%>
               <%end%>
+              
+              
               </ol>
             <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
           </div>

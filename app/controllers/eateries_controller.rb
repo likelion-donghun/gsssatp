@@ -19,7 +19,6 @@ class EateriesController < ApplicationController
         #else
             #@eateries = Eatery.paginate(:page => params[:page], :per_page => 30)
         #end
-    
     end
 
     def new
@@ -49,6 +48,7 @@ class EateriesController < ApplicationController
         @eatery = Eatery.find(params[:id])    
         #authorize_action_for @eatery
         @eatery.update(eatery_params)
+        
         redirect_to eatery_path(@eatery)
     end
 
@@ -56,6 +56,7 @@ class EateriesController < ApplicationController
         #authorize_action_for @eatery
         @eatery = Eatery.find(params[:id])
         @eatery.destroy
+        
         redirect_to eateries_path
     end
     
@@ -63,7 +64,5 @@ class EateriesController < ApplicationController
     def eatery_params
         params.require(:eatery).permit(:style, :name, :callnumber, :openhourm, :menu, :image)    
     end
-
-
 
 end

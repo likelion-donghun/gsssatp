@@ -2,18 +2,18 @@ Restaurant : <%= @eatery.name %><br>
 Open Hours : <%= @eatery.openhour %><br>
 Contact : <%= @eatery.callnumber %><br>
 Style  : <%= @eatery.style %><br>
-Menu  : <%= h(@eatery.menu).gsub(/\n/, '<br/>').html_safe%>
+Menu  : <%#= h(@eatery.menu).gsub(/\n/, '<br/>').html_safe%>
 
 <%=image_tag "#{@eatery.image}", class: "responsive-img"%><br>
 
 <%=link_to 'list', eateries_path, class: 'waves-effect waves-light btn'%>
 <% if user_signed_in? %>
-  <% if @eatery.updatable_by? current_user %>
+  <%# if @eatery.updatable_by? current_user %>
     <%=link_to 'edit', edit_eatery_path(@eatery), class: 'waves-effect waves-light btn'%>
-  <%end%>
-  <% if @eatery.deletable_by? current_user %>
-    <%=link_to 'delete', eatery_path(@eatery), method: "delete", class: 'waves-effect waves-light btn'%><br>
-  <%end%><br><br>
+  <%#end%>
+  <%# if @eatery.deletable_by? current_user %>
+    <%=link_to 'delete', eatery_path(@eatery), :method=> :delete, class: 'waves-effect waves-light btn'%><br>
+  <%#end%><br><br>
 
 
 <!--menu, review(comment), favorite, like-->

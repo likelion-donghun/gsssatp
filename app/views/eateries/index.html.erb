@@ -10,7 +10,7 @@
             </div>
             <div class="card-content">
             <span class="card-title"><h5><%=e.name%></h5></span><br>
-              <%= e.likes.size %> 명이 좋아합니다.
+              <%= e.likes.size %> 명이
               <% if user_signed_in? %>
                 <% if current_user.is_like(e) %>
                   <%= link_to eatery_like_path(e), method: "post" do%>
@@ -21,7 +21,7 @@
                     <%= image_tag "#{asset_path "heart_empty.png"}", alt: "blog-img"%>
                   <% end %>
                 <% end %>
-              <% end %>  
+              <% end %>합니다.  
               <p><%= truncate(e.menu, :length => 14, :separator=>' ')%></p>
             </div>
             <div class="card-action">

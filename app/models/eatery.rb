@@ -1,4 +1,5 @@
 class Eatery < ActiveRecord::Base
+    
     resourcify
     
   include Authority::Abilities

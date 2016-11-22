@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   has_many :liked_promotions, through: :likes, source: :promotions
     
   # User : Eatery => 1:N
-  has_many :eateries, :dependent => :destroy
+  has_many :eateries
   
   # User : Like => 1:N 
   has_many :likes
